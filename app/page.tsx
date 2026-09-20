@@ -17,7 +17,7 @@ export default function HomePage() {
         What did government promise your community?
       </h1>
       <p className="mt-5 max-w-2xl text-lg leading-8 text-[var(--muted)]">
-        Search public budget records in plain language and inspect the evidence behind every answer.
+        Search public budget records in plain language and see the evidence behind every answer.
       </p>
 
       <form action="/search" className="mt-10" method="get">
@@ -57,7 +57,7 @@ export default function HomePage() {
       <aside className="mt-12 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5">
         <p className="text-sm font-semibold">Hackathon prototype coverage</p>
         <p className="mt-1 text-sm leading-6 text-[var(--muted)]">
-          Selected 2026 Federal Government projects in the Federal Capital Territory. Real project data is added in M1.
+          Selected 2026 Federal Government projects in the FCT.
         </p>
       </aside>
     </section>

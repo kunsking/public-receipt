@@ -7,6 +7,7 @@
   --muted: #696969;
   --border: #dedbd4;
   --official: #285943;
+  --official-soft: #e4eee8;
   --community: #315f6d;
   --caution: #8a641f;
   --disputed: #8c3131;
@@ -37,6 +38,17 @@ select {
 
 a {
   color: inherit;
+}
+
+.search-chip {
+  display: inline-flex;
+  min-height: 2rem;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 9999px;
+  background: var(--surface);
+  padding: 0.25rem 0.75rem;
+  color: var(--muted);
 }
 
 :focus-visible {
