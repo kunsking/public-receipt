@@ -11,7 +11,9 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
-    "quality": "pnpm lint && pnpm typecheck && pnpm test"
+    "quality": "pnpm lint && pnpm typecheck && pnpm test",
+    "seed:validate": "tsx scripts/validate-seed.ts",
+    "seed:import": "tsx scripts/import-projects.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.7.0",
@@ -38,6 +40,7 @@
     "eslint-config-next": "^16.0.0",
     "jsdom": "^26.0.0",
     "tailwindcss": "^4.1.0",
+    "tsx": "^4.20.0",
     "typescript": "^5.9.0",
     "vitest": "^3.2.0"
   }
