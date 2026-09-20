@@ -15,7 +15,8 @@
     "seed:validate": "tsx scripts/validate-seed.ts",
     "seed:import": "tsx --env-file=.env.local scripts/import-projects.ts",
     "m1:verify": "tsx --env-file=.env.local scripts/verify-hosted-m1.ts",
-    "m2:verify": "tsx --env-file=.env.local scripts/verify-hosted-m2.ts"
+    "m2:verify": "tsx --env-file=.env.local scripts/verify-hosted-m2.ts",
+    "m3:verify": "tsx --env-file=.env.local scripts/verify-hosted-m3.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.7.0",
