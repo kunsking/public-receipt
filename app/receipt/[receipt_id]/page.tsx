@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { cache } from "react";
 
 import { EvidenceSummary } from "@/components/evidence/evidence-summary";
+import { ReceiptQuestion } from "@/components/ai/receipt-question";
 import { ActionPanel } from "@/components/receipt/action-panel";
 import { OfficialRecord } from "@/components/receipt/official-record";
 import { ReceiptHeader } from "@/components/receipt/receipt-header";
@@ -66,6 +67,8 @@ export default async function ReceiptPage({ params }: ReceiptPageProps) {
             </div>
           </aside>
         </div>
+
+        <ReceiptQuestion receiptId={receipt.receiptId} />
 
         <div className="mt-8 border-t border-[var(--border)] pt-8">
           <ActionPanel receipt={receipt} />

@@ -8,6 +8,7 @@ import {
   searchRequestSchema,
   type SearchInterpretation,
 } from "@/lib/ai/schemas";
+import { getOpenAIConfiguration } from "@/lib/ai/config";
 import { fallbackInterpretQuery } from "@/lib/ai/fallback-query";
 import { SEARCH_INTERPRETER_PROMPT } from "@/lib/ai/prompts";
 
@@ -39,14 +40,14 @@ function applyDeterministicSafetyRules(
 }
 
 async function interpretWithOpenAI(query: string): Promise<SearchInterpretation> {
-  const model = process.env.OPENAI_MODEL;
-  if (!model || !process.env.OPENAI_API_KEY) {
+  const configuration = getOpenAIConfiguration();
+  if (!configuration) {
     throw new Error("OpenAI interpretation is not configured");
   }
 
-  const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  const client = new OpenAI({ apiKey: configuration.apiKey });
   const response = await client.responses.parse({
-    model,
+    model: configuration.model,
     store: false,
     input: [
       { role: "system", content: SEARCH_INTERPRETER_PROMPT },
@@ -69,8 +70,7 @@ export async function interpretQuery(
   modelInterpreter?: ModelQueryInterpreter,
 ): Promise<QueryInterpretationResult> {
   const { query } = searchRequestSchema.parse({ query: rawQuery });
-  const aiEnabled = process.env.ENABLE_AI === "true";
-  const interpreter = modelInterpreter ?? (aiEnabled ? interpretWithOpenAI : null);
+  const interpreter = modelInterpreter ?? (getOpenAIConfiguration() ? interpretWithOpenAI : null);
 
   if (interpreter) {
     try {
