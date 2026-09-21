@@ -9,15 +9,14 @@ import {
 } from "@/lib/domain/receipt";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
-type PublicEvidenceStatus =
-  | "Verified Evidence"
-  | "Corroborated Community Evidence"
-  | "Community Report"
-  | "Unverified"
-  | "Disputed";
-
 interface EvidenceRow {
-  trust_status: PublicEvidenceStatus;
+  verification_status:
+    | "community_report"
+    | "corroborated"
+    | "verified_independent"
+    | "disputed";
+  moderation_status: "pending" | "approved" | "rejected";
+  public_visibility: boolean;
 }
 
 export const EMPTY_EVIDENCE_SUMMARY: EvidenceSummary = {
@@ -30,12 +29,13 @@ export const EMPTY_EVIDENCE_SUMMARY: EvidenceSummary = {
 function summariseEvidence(rows: EvidenceRow[]): EvidenceSummary {
   return rows.reduce<EvidenceSummary>(
     (summary, row) => {
-      if (row.trust_status === "Verified Evidence") summary.verifiedIndependent += 1;
-      if (row.trust_status === "Corroborated Community Evidence") {
+      if (row.moderation_status !== "approved" || !row.public_visibility) return summary;
+      if (row.verification_status === "verified_independent") summary.verifiedIndependent += 1;
+      if (row.verification_status === "corroborated") {
         summary.corroboratedReports += 1;
       }
-      if (row.trust_status === "Community Report") summary.communityReports += 1;
-      if (row.trust_status === "Disputed") summary.disputed = true;
+      if (row.verification_status === "community_report") summary.communityReports += 1;
+      if (row.verification_status === "disputed") summary.disputed = true;
       return summary;
     },
     { ...EMPTY_EVIDENCE_SUMMARY },
@@ -56,8 +56,10 @@ export async function getPublicReceiptByReceiptId(
     getProjectSource(project.id, supabase),
     supabase
       .from("evidence_submissions")
-      .select("trust_status")
-      .eq("project_id", project.id),
+      .select("verification_status, moderation_status, public_visibility")
+      .eq("project_id", project.id)
+      .eq("moderation_status", "approved")
+      .eq("public_visibility", true),
   ]);
 
   if (!source) return null;

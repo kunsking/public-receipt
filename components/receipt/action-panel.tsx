@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, ExternalLink } from "lucide-react";
+import { ArrowLeft, ExternalLink, Users } from "lucide-react";
 
 import type { PublicReceipt } from "@/lib/domain/receipt";
 
@@ -10,8 +10,15 @@ export function ActionPanel({ receipt }: { receipt: PublicReceipt }) {
 
   return (
     <nav aria-label="Receipt actions" className="flex flex-col gap-3 sm:flex-row">
-      <a
+      <Link
         className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[var(--foreground)] px-5 text-sm font-semibold text-white"
+        href={`/receipt/${receipt.receiptId}/submit`}
+      >
+        <Users aria-hidden="true" className="size-4" /> I know this project
+        <span className="sr-only"> — Share what you observed.</span>
+      </Link>
+      <a
+        className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-5 text-sm font-semibold"
         href={receipt.source.sourceUrl}
         rel="noopener noreferrer"
         target="_blank"

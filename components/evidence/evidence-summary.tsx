@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { CheckCircle2, Minus, Users } from "lucide-react";
 
 import {
@@ -7,7 +8,13 @@ import {
   type EvidenceSummary as EvidenceSummaryData,
 } from "@/lib/domain/receipt";
 
-export function EvidenceSummary({ summary }: { summary: EvidenceSummaryData }) {
+export function EvidenceSummary({
+  summary,
+  receiptId,
+}: {
+  summary: EvidenceSummaryData;
+  receiptId?: string;
+}) {
   const verified = hasVerifiedImplementationEvidence(summary);
   const communityEvidence = summary.corroboratedReports + summary.communityReports;
 
@@ -67,6 +74,14 @@ export function EvidenceSummary({ summary }: { summary: EvidenceSummaryData }) {
             Community observations will appear separately from the official government record.
           </p>
         </div>
+      ) : null}
+      {receiptId ? (
+        <Link
+          className="mt-6 inline-flex min-h-11 items-center rounded-lg border border-[var(--border)] bg-white px-4 text-sm font-semibold"
+          href={`/receipt/${receiptId}/evidence`}
+        >
+          View all community evidence
+        </Link>
       ) : null}
     </section>
   );

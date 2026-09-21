@@ -55,7 +55,7 @@ export default async function ReceiptPage({ params }: ReceiptPageProps) {
             <SourceCitation receipt={receipt} />
           </aside>
           <div className="lg:col-start-1">
-            <EvidenceSummary summary={receipt.evidenceSummary} />
+            <EvidenceSummary receiptId={receipt.receiptId} summary={receipt.evidenceSummary} />
           </div>
           <aside className="lg:col-start-2">
             <div className="rounded-2xl border border-[var(--border)] p-5 text-sm leading-6 text-[var(--muted)]">

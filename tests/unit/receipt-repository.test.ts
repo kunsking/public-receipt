@@ -49,7 +49,11 @@ const sourceRow = {
 function mockClient(options: {
   project?: typeof projectRow | null;
   source?: typeof sourceRow | null;
-  evidence?: Array<{ trust_status: string }>;
+  evidence?: Array<{
+    verification_status: string;
+    moderation_status: string;
+    public_visibility: boolean;
+  }>;
 } = {}): SupabaseClient {
   const project = options.project === undefined ? projectRow : options.project;
   const source = options.source === undefined ? sourceRow : options.source;
@@ -72,9 +76,13 @@ function mockClient(options: {
         return { select: () => builder };
       }
       if (table === "evidence_submissions") {
-        return {
-          select: () => ({ eq: async () => ({ data: evidence, error: null }) }),
+        const builder = {
+          eq: () => builder,
+          then: (
+            resolve: (value: { data: typeof evidence; error: null }) => unknown,
+          ) => Promise.resolve({ data: evidence, error: null }).then(resolve),
         };
+        return { select: () => builder };
       }
       throw new Error(`Unexpected table: ${table}`);
     },
@@ -140,10 +148,31 @@ describe("public receipt repository", () => {
       "PR-NG-FCT-2026-000001",
       mockClient({
         evidence: [
-          { trust_status: "Verified Evidence" },
-          { trust_status: "Corroborated Community Evidence" },
-          { trust_status: "Community Report" },
-          { trust_status: "Disputed" },
+          {
+            verification_status: "verified_independent",
+            moderation_status: "approved",
+            public_visibility: true,
+          },
+          {
+            verification_status: "corroborated",
+            moderation_status: "approved",
+            public_visibility: true,
+          },
+          {
+            verification_status: "community_report",
+            moderation_status: "approved",
+            public_visibility: true,
+          },
+          {
+            verification_status: "disputed",
+            moderation_status: "approved",
+            public_visibility: true,
+          },
+          {
+            verification_status: "community_report",
+            moderation_status: "pending",
+            public_visibility: false,
+          },
         ],
       }),
     );
