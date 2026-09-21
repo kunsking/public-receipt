@@ -9,9 +9,9 @@ export function TopNav() {
         </Link>
         <nav aria-label="Primary" className="hidden gap-6 text-sm md:flex">
           <Link href="/">Home</Link>
-          <Link href="/explore">Explore</Link>
-          <Link href="/community">My Community</Link>
+          <Link href="/search">Search</Link>
           <Link href="/data">About the Data</Link>
+          <Link href="/verification">How Verification Works</Link>
         </nav>
       </div>
     </header>

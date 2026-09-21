@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, ExternalLink, Users } from "lucide-react";
+import { ArrowLeft, ExternalLink, Share2, Users } from "lucide-react";
 
 import type { PublicReceipt } from "@/lib/domain/receipt";
 
@@ -16,6 +16,12 @@ export function ActionPanel({ receipt }: { receipt: PublicReceipt }) {
       >
         <Users aria-hidden="true" className="size-4" /> I know this project
         <span className="sr-only"> — Share what you observed.</span>
+      </Link>
+      <Link
+        className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-5 text-sm font-semibold"
+        href={`/receipt/${receipt.receiptId}/share`}
+      >
+        <Share2 aria-hidden="true" className="size-4" /> Share receipt
       </Link>
       <a
         className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-5 text-sm font-semibold"

@@ -159,6 +159,9 @@ export function AddEvidenceFlow({
           <Link className="inline-flex min-h-12 items-center justify-center rounded-xl border border-[var(--border)] bg-white px-5 text-sm font-semibold" href={`/receipt/${receiptId}/source`}>
             View official source
           </Link>
+          <Link className="inline-flex min-h-12 items-center justify-center rounded-xl border border-[var(--border)] bg-white px-5 text-sm font-semibold" href={`/receipt/${receiptId}/share`}>
+            Share Receipt
+          </Link>
         </div>
       </section>
     );

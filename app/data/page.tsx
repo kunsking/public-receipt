@@ -20,7 +20,21 @@ export default function DataPage() {
 
       <section className="mt-10 border-t border-[var(--border)] pt-8">
         <h2 className="text-2xl font-semibold">Primary source</h2>
-        <p className="mt-3 leading-7 text-[var(--muted)]">2026 Federal Appropriation Act, published by the Budget Office of the Federation. Every indexed project retains a source excerpt and reference.</p>
+        <p className="mt-3 leading-7 text-[var(--muted)]">2026 Federal Appropriation Act Details, published by the Budget Office of the Federation. Every indexed project retains a source excerpt and reference.</p>
+      </section>
+
+      <section className="mt-10 border-t border-[var(--border)] pt-8">
+        <h2 className="text-2xl font-semibold">How records were selected</h2>
+        <p className="mt-3 max-w-3xl leading-7 text-[var(--muted)]">
+          The prototype reviews FCT-related rows in the official Act, checks each candidate in its document context and retains records with a traceable title, amount, responsible institution context, source page and usable location. It prioritises healthcare, education, roads, water and community infrastructure.
+        </p>
+      </section>
+
+      <section className="mt-10 border-t border-[var(--border)] pt-8">
+        <h2 className="text-2xl font-semibold">Source traceability</h2>
+        <p className="mt-3 max-w-3xl leading-7 text-[var(--muted)]">
+          Each receipt preserves the official wording, project code, source excerpt, PDF and printed page reference where available, publisher and indexed source URL. Plain-language fields never replace that retained record.
+        </p>
       </section>
 
       <section className="mt-10 border-t border-[var(--border)] pt-8">
@@ -38,7 +52,10 @@ export default function DataPage() {
           <li>Community evidence is not yet comprehensive.</li>
           <li>Normalised locations may carry confidence levels.</li>
         </ul>
-        <Link className="mt-7 inline-block font-semibold text-[var(--official)] underline underline-offset-4" href="/verification">Read the verification model</Link>
+        <div className="mt-7 flex flex-wrap gap-5">
+          <Link className="font-semibold text-[var(--official)] underline underline-offset-4" href="/verification">Read the verification model</Link>
+          <a className="font-semibold text-[var(--official)] underline underline-offset-4" href="https://budgetoffice.gov.ng/index.php/2026-appropriation-act-details" rel="noopener noreferrer" target="_blank">Open the official source</a>
+        </div>
       </section>
     </article>
   );

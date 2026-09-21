@@ -17,7 +17,9 @@
     "m1:verify": "tsx --env-file=.env.local scripts/verify-hosted-m1.ts",
     "m2:verify": "tsx --env-file=.env.local scripts/verify-hosted-m2.ts",
     "m3:verify": "tsx --env-file=.env.local scripts/verify-hosted-m3.ts",
-    "m5:verify": "tsx --env-file=.env.local scripts/verify-hosted-m5.ts"
+    "m5:verify": "tsx --env-file=.env.local scripts/verify-hosted-m5.ts",
+    "m6:verify": "tsx --env-file=.env.local scripts/verify-hosted-m6.ts",
+    "screenshots:capture": "tsx scripts/capture-submission-screenshots.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.7.0",

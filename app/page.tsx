@@ -1,16 +1,19 @@
 import Link from "next/link";
 
 const suggestions = [
-  "Healthcare in Bwari",
-  "Roads in Kuje",
-  "Schools in AMAC",
-  "Water in Gwagwalada",
+  "Roads in Kwali",
+  "Healthcare in Gwagwalada",
+  "Schools in Bwari",
+  "Water in Kwali",
 ];
 
 export default function HomePage() {
   return (
     <section className="mx-auto max-w-3xl py-10 sm:py-16">
-      <p className="mb-5 text-sm font-semibold uppercase tracking-[0.18em] text-[var(--official)]">
+      <p className="text-xs font-black uppercase tracking-[0.22em] text-[var(--official)]">
+        PUBLIC RECEIPT
+      </p>
+      <p className="mb-5 mt-3 text-sm font-semibold text-[var(--muted)]">
         Every public project deserves a public receipt.
       </p>
       <h1 className="max-w-2xl text-4xl font-semibold leading-tight tracking-tight sm:text-6xl">
